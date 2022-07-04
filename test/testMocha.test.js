@@ -1,7 +1,7 @@
 import axios from "axios";
 import assert from "assert";
-import {conectar, desconectar} from "../src/servidor.js";
-import {obtenerTurnos, borrarTurnos, agregarTurno, obtenerTurnoSegunId} from '../src/turnos.js'; 
+import {conectar, desconectar} from "../src/server/servidor.js";
+import {obtenerTurnos, borrarTurnos, agregarTurno, obtenerTurnoSegunId} from '../src/turnos/turnos.js'; 
 
 
 
@@ -31,7 +31,7 @@ describe('servidor de pruebas', () => {
 
     before(async() => {
         const port = await conectar()
-        serverUrl = `http://localhost:${port}/turnos`
+        serverUrl = `http://localhost:${port}/api/turnos`
     })
 
     after(async() => {
@@ -55,8 +55,8 @@ describe('servidor de pruebas', () => {
             })
         })
         
-        describe('al pedirle los turnos relacionadas con cierto tipo de servicio', () => {
-            it('devuelve un array con turnos relacionadas al tipo de servicio', async () => {
+        describe('al pedirle los turnos de tipo programdo', () => {
+            it('devuelve un array con turnos de tipo programado', async () => {
 
                 await agregarTurno(turnoDePrueba1)
                 await agregarTurno(turnoDePrueba2)
@@ -73,7 +73,7 @@ describe('servidor de pruebas', () => {
         })
 
         describe('al pedirle un turno especifico, segun su identificador', () => {
-            it('devuelve esa turno', async () => {
+            it('devuelve ese turno', async () => {
 
                 const turnoAgregado1 = await agregarTurno(turnoDePrueba1)
 
@@ -145,8 +145,8 @@ describe('servidor de pruebas', () => {
             })
         })
 
-        describe('al pedirle que borre una turno especifica, segun su identificador', () => {
-            it('borra esa turno y no devuelve nada', async () => {
+        describe('al pedirle que borre un turno especifico, segun su identificador', () => {
+            it('borra ese turno y no devuelve nada', async () => {
 
                 const turnoAgregado1 = await agregarTurno(turnoDePrueba1)
 
@@ -170,7 +170,7 @@ describe('servidor de pruebas', () => {
             })
         })
 
-        describe('al mandarle un turno valida y un identificador de turno', () => {
+        describe('al mandarle un turno valido y un identificador de turno', () => {
             it('reemplaza el preexistente por el nuevo', async () => {
                 const turnoAgregado1 = await agregarTurno(turnoDePrueba1)
 

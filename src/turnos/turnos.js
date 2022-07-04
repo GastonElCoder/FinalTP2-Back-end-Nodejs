@@ -1,4 +1,4 @@
-import {obtenerNuevoId} from '../src/ids.js'
+import { crearTurno } from "./Turno.js"
 
 const turnos = [ ]
 
@@ -14,25 +14,6 @@ function copiarTurno(turno){
 
 function copiarTurnos(turnos){
     return turnos.map(copiarTurno)
-}
-
-function crearTurno(datos) {
-    if (!datos.nombre) {
-        throw new Error('el campo nombre es obligatorio')
-    }
-    if (!datos.tipoDeServicio) {
-        throw new Error('el campo tipo es obligatorio')
-    }
-    const turno = {
-    nombre : datos.nombre,
-    dia : datos.dia,
-    mes : datos.mes,
-    hora : datos.hora,
-    numeroDeTelefono : datos.numeroDeTelefono,
-    tipoDeServicio : datos.tipoDeServicio,
-    id : obtenerNuevoId('turno'),
-    }
-    return turno
 }
 
 export function obtenerTurnos(){
@@ -52,7 +33,7 @@ export function borrarTurnos() {
 }
 
 export function obtenerTurnosSegunTipo(tipo){
-    const buscados = turnos.filter(t => t.tipoDeServicio.includes(tipo))
+    const buscados = turnos.filter(t => turno.tipoDeServicio.includes(tipo))
     return copiarTurnos(buscados)
 }
 

@@ -1,18 +1,16 @@
-import  express  from "express";
+import {Router} from 'express'
 import {agregarTurno, obtenerTurnos,
-     obtenerTurnosSegunTipo, obtenerTurnoSegunId,
-    borrarTurnoSegunId, reemplazarTurno } from "./turnos.js";
+    obtenerTurnosSegunTipo, obtenerTurnoSegunId,
+   borrarTurnoSegunId, reemplazarTurno } from "./turnos.js";
 
-const app = express();
+const routerTurnos = new Router()
 
-app.use(express.json());
-
-app.get('/turnos', (req, res) => {
+routerTurnos.get('/', (req, res) => {
     const turnos = obtenerTurnos()
     res.json(turnos)
 })
 
-app.get('/turnos', (req, res) => {
+routerTurnos.get('/', (req, res) => {
     let turnos
     if (req.query.tipoDeServicio) {
         turnos = obtenerTurnosSegunTipo(req.query.tipoDeServicio)
@@ -22,7 +20,7 @@ app.get('/turnos', (req, res) => {
     res.json(turnos)
 })
 
-app.get('/turnos/:id', (req, res) => {
+routerTurnos.get('/:id', (req, res) => {
     try {
         const turno = obtenerTurnoSegunId(req.params.id)
         res.json(turno)
@@ -32,7 +30,7 @@ app.get('/turnos/:id', (req, res) => {
 })
 
 
-app.post('/turnos', (req, res) => {
+routerTurnos.post('/', (req, res) => {
     try {
         const turno = req.body
         const turnoAgregado = agregarTurno(turno)
@@ -42,7 +40,7 @@ app.post('/turnos', (req, res) => {
     }
 })
 
-app.delete('/turnos/:id', (req, res) => {
+routerTurnos.delete('/:id', (req, res) => {
     try {
         borrarTurnoSegunId(req.params.id)
         res.sendStatus(204)
@@ -51,7 +49,7 @@ app.delete('/turnos/:id', (req, res) => {
     }
 })
 
-app.put('/turnos/:id', (req, res) => {
+routerTurnos.put('/:id', (req, res) => {
     try {
         const datosActualizados = req.body
         const turnoActualizado = reemplazarTurno(req.params.id, datosActualizados)
@@ -65,28 +63,5 @@ app.put('/turnos/:id', (req, res) => {
     }
 })
 
+export {routerTurnos}
 
-let server
-
-export function conectar(port) {
-    return new Promise((resolve, reject) => {
-        server = app.listen(port, () => {
-            resolve(server.address().port)
-        })
-        server.on('error', error => {
-            reject(error)
-        })
-    })
-}
-
-export function desconectar() {
-    return new Promise((resolve, reject) => {
-        server.close(error => {
-            if (error) {
-                reject(error)
-            } else {
-                resolve()
-            }
-        })
-    })
-}
