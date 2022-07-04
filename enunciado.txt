@@ -1,0 +1,39 @@
+Enunciado
+Realizar un pequeño sistema para controlar los turnos de atención de un taller mecánico. Esta
+versión inicial debe poder satisfacer los siguientes casos de uso:
+1. Carga de un nuevo turno con las siguientes características: día (entero positivo), mes (entero
+en rango 1-12), y hora (entero en rango 0-23), nombre del responsable del turno (string no
+vacío), número de teléfono (string, solo caracteres numéricos), tipo de servicio (string, sólo
+una de estas opciones: programado, auxilio, cotización). Se debe considerar (reservar) un
+15% del total de turnos mensuales para el tipo de auxilio.
+2. Reporte de diversidad de tipos de servicio que, a partir de un número de mes (entero),
+devuelve la cantidad de turnos registrados para cada tipo de servicio entre todos los turnos
+existentes desde el mes indicado (inclusive).
+En caso de ser necesario, el servidor recibirá desde el cliente los datos requeridos en formato JSON.
+En caso de inconvenientes, el servidor responderá con un objeto con un campo ‘errorMsg’
+informando el motivo de la falla. Todas las respuestas deberán estar correctamente adosadas con su
+código de estado correspondiente, según el resultado de la operación.
+Aclaraciones sobre el desarrollo esperado:
+1. El proyecto debe incluir únicamente el backend del sistema, utilizando Node.js + express. El
+formato del servidor es de tipo RESTful. Tener en cuenta los lineamientos de dicho formato,
+especialmente a la hora de elegir los nombres de las rutas de acceso al sistema, y cómo
+pasar datos adicionales a la consulta.
+2. El sistema debe estar correctamente separado en capas y componentes, y esta separación
+debe estar claramente puesta de manifiesto en la estructura de carpetas y archivos. Entre los
+componentes que esperamos que estén presentes encontramos: router/controlador, casos de
+uso, modelo/s, DAO/s, servicios de terceros y factories (los que correspondan de acuerdo al
+sistema modelado).
+3. La validación de datos es una parte importante del negocio, por lo tanto, observar cómo y
+dónde realizarla.
+4. No es necesario utilizar una conexión a base de datos real, persistir en el DAO usando
+memoria ram del servidor.
+5. Recordar el rol de las factories, que nos permiten desacoplarnos de las dependencias de
+nuestros componentes a la hora necesitar una instancia de los mismos. Recordar esto
+especialmente a la hora de decidir cómo obtener los casos de uso para invocarlos desde la
+capa de ruteo.
+6. Considerar la inclusión de algún test funcional (usando axios, por ejemplo) para verificar el
+correcto funcionamiento de lo que se está desarrollando.
+7. Pueden reutilizar código de proyectos realizados durante el cuatrimestre, siempre y cuando
+el código se utilice y realmente aporte al desarrollo de las funcionalidades pedidas. La
+inclusión de código innecesario o fuera de lugar será penalizada (o sea, no hagan copy
+paste indiscriminadamente, y revisen lo que entregan
