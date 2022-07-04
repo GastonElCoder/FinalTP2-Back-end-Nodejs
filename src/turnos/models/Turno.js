@@ -1,4 +1,4 @@
-import { obtenerNuevoId } from "../shared/ids.js"; 
+import { obtenerNuevoId } from "../../shared/ids/ids.js"; 
 
 
 export function crearTurno(datos) {

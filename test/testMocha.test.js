@@ -1,7 +1,7 @@
 import axios from "axios";
 import assert from "assert";
 import {conectar, desconectar} from "../src/server/servidor.js";
-import {obtenerTurnos, borrarTurnos, agregarTurno, obtenerTurnoSegunId} from '../src/turnos/turnos.js'; 
+import {obtenerTurnos, borrarTurnos, agregarTurno, obtenerTurnoSegunId} from '../src/turnos/services/turnos.js'; 
 
 
 

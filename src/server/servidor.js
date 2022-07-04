@@ -1,5 +1,5 @@
 import  express  from "express";
-import  { routerTurnos } from "../turnos/routerTurnos.js"
+import  { routerTurnos } from "../turnos/router/routerTurnos.js"
 const app = express();
 
 app.use(express.json());
